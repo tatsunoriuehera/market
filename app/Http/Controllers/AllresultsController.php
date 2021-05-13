@@ -12,11 +12,21 @@ class AllresultsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $items=DB::select('select * from allresults');
-        return view('allresults.index',['items'=>$items]);
+        //$dates=DB::select('select distinct date from allresults order by date desc');
+        $dates=DB::select('select distinct date from all_markets order by date desc');
+        if(isset($request->set_date)){
+          $param=['date'=>$request->set_date];
+          //$items=DB::select('select * from allresults where date = :date order by date desc,id',$param);
+          $items=DB::select('select * from all_markets where date = :date order by date desc,id',$param);
+        }
+        else{
+          //$items=DB::select('select * from allresults order by date desc ,id');
+          $items=DB::select('select * from all_markets order by date desc ,id');
+        }
+        return view('allresults.index',['items'=>$items],['dates'=>$dates]);
     }
 
     /**
@@ -38,6 +48,7 @@ class AllresultsController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -57,9 +68,19 @@ class AllresultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
         //
+        if(isset($request->set_date)){
+          $param=['date'=>$request->set_date];
+          //$items=DB::select('select * from allresults where date = :date order by date desc,id',$param);
+          $items=DB::select('select * from all_markets where date = :date order by date desc,id',$param);
+        }
+        else{
+          //$items=DB::select('select * from allresults order by date desc ,id');
+          $items=DB::select('select * from all_markets order by date desc ,id');
+        }
+        return view('allresults.edit',['items'=>$items]);
     }
 
     /**
@@ -69,9 +90,18 @@ class AllresultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        if(isset($request->set_date)){
+          $param=['date'=>$request->set_date];
+          //$items=DB::update('update allresults set date =:date where date is null',$param);
+          $items=DB::update('update all_markets set date =:date where date is null',$param);
+          $message = "null date is ". $request->set_date. " update";
+        }else{
+          $message = "set_date is empty";
+        }
+        return view('allresults.edit',compact('message'));
     }
 
     /**
@@ -80,8 +110,18 @@ class AllresultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        if(isset($request->name)){
+          $param=['name'=>$request->name];
+          //$items=DB::delete('delete from allresults where name =:name',$param);
+          $items=DB::delete('delete from all_markets where name =:name',$param);
+          $message = "name " . $request->name. " is delete";
+        }else{
+          $message = "name is empty";
+        }
+        return view('allresults.edit',compact('message'));
     }
+
 }

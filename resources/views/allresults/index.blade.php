@@ -1,11 +1,29 @@
-@extends('allresults/layout')
+@extends('allresults.layout')
+@section('title','index')
 @section('content')
 <div class="container ops-main">
 <div class="row">
   <div class="col-md-12">
     <h3 class="ops-title">一覧</h3>
   </div>
+  <ul>
+    <li><a href="allresults">all_date</a></li>
+    @foreach($dates as $date)
+    <li><a href="allresults?set_date={{$date->date}}">{{$date->date}}</a></li>
+    @endforeach
+  </ul>
 </div>
+
+<form action="allresults/edit" method="post">
+  <label>update date:</label>{{csrf_field()}}<input type="text" name="set_date" value="">
+  <input type="submit" name="submit" value="submit">
+</form>
+
+<form action="allresults" method="post">
+  <label>delete name:</label>{{csrf_field()}}<input type="text" name="name" value="品名">
+  <input type="submit" name="submit" value="submit">
+</form>
+
 <div class="row">
   <div class="col-md-11 col-md-offset-1">
     <table class="table text-center">
@@ -38,4 +56,8 @@
     </table>
   </div>
 </div>
+@endsection
+
+@section('footer')
+presented by uehara
 @endsection

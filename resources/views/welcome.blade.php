@@ -85,6 +85,12 @@
                 </div>
 
                 <div class="links">
+                    <a href="allresults">allresults</a>
+                    <a href="csv/edit">csv</a>
+                    <a href="chart">chartjs</a>
+                    <p>https://beyondjapan.com/blog/2020/10/goodbycsv/</p>
+                    <p>https://laraweb.net/tutorial/5906/</p>
+                    <hr>
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>

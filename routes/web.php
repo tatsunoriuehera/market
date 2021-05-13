@@ -16,4 +16,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('allresults','AllresultsController');
+//Route::resource('allresults','AllresultsController');
+Route::get('allresults','AllresultsController@index');
+//update
+Route::get('allresults/edit','AllresultsController@edit');
+Route::post('allresults/edit','AllresultsController@update');
+//delete
+Route::post('allresults','AllresultsController@destroy');
+
+/////////////////////////////////////////////////////////////////////////////
+
+Route::get('csv','CsvController@index');//表示
+Route::post('csv','CsvController@importCSV');//登録
+
+
+Route::get('csv/edit', 'CsvController@test'); //表示
+Route::post('csv/edit', 'CsvController@importCsv'); //登録
+
+/////////////////////////////////////////////////////////////////////////////
+
+Route::get('chart','ChartController@index');//表示
+Route::post('chart','ChartController@result');//結果
