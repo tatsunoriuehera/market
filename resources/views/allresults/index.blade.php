@@ -12,6 +12,7 @@
     <li><a href="allresults?set_date={{$date->date}}">{{$date->date}}</a></li>
     @endforeach
   </ul>
+  {{$dates->links()}}
 </div>
 
 <form action="allresults/edit" method="post">

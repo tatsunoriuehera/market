@@ -16,7 +16,10 @@ class AllresultsController extends Controller
     {
         //
         //$dates=DB::select('select distinct date from allresults order by date desc');
-        $dates=DB::select('select distinct date from all_markets order by date desc');
+
+        //$dates=DB::select('select distinct date from all_markets order by date desc');
+        $dates=DB::table('all_markets')->distinct()->select('date')->orderBy('date','desc')->simplePaginate(10);
+
         if(isset($request->set_date)){
           $param=['date'=>$request->set_date];
           //$items=DB::select('select * from allresults where date = :date order by date desc,id',$param);
