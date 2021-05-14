@@ -11,7 +11,7 @@
   <div>
     <label>item name:</label>
     <select name="name">
-      @foreach($date_list as $value)
+      @foreach($namelist as $value)
       <option value="{{$value->name}}">
         {{$value->name}}
       </option>

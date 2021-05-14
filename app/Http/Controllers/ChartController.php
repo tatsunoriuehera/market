@@ -13,7 +13,8 @@ class ChartController extends Controller
       $param=['name'=>'輪菊(白)'];
       //$param=['name'=>$request->name];
       //SQLの結果を連想配列で変数に代入
-      $dates=DB::select('select distinct name ,date,total_quantity from all_markets ');
+      $dates = DB::select('select distinct date , total_quantity from all_markets ');
+      $namelist = DB::select('select distinct name from names ');
       //$dates=['2021-04-01','2021-04-02','2021-04-03'];
 
       //空の配列を作成
@@ -34,14 +35,15 @@ class ChartController extends Controller
         //$items=DB::select('select * from allresults order by date desc ,id');
         //$items=DB::select('select * from all_markets order by date desc ,id');
       //}
-      return view('chart.index',['dates'=>$j_date,'param'=>$param,'quantity'=>$j_quantity,'date_list'=>$dates]);
+      return view('chart.index',['dates'=>$j_date,'param'=>$param,'quantity'=>$j_quantity,'date_list'=>$dates,'namelist'=>$namelist]);
       //return view('chart.index')->with($dates);
 
     }
     public function result(Request $request){
-      $param=['name'=>$request->name];
+      $param = ['name'=>$request->name];
       //SQLの結果を連想配列で変数に代入
-      $dates=DB::select('select distinct date , total_quantity , name from all_markets where name = :name and total_quantity > 0 order by date desc ',$param);
+      $dates = DB::select('select distinct date , total_quantity from all_markets where name = :name and total_quantity > 0 order by date ',$param);
+      $namelist = DB::select('select distinct name from names ');
       //$dates=['2021-04-01','2021-04-02','2021-04-03'];
 
       //空の配列を作成
@@ -62,7 +64,7 @@ class ChartController extends Controller
         //$items=DB::select('select * from allresults order by date desc ,id');
         //$items=DB::select('select * from all_markets order by date desc ,id');
       //}
-      return view('chart.index',['dates'=>$j_date,'quantity'=>$j_quantity,'param'=>$param,'date_list'=>$dates]);
+      return view('chart.index',['dates'=>$j_date,'quantity'=>$j_quantity,'param'=>$param,'date_list'=>$dates,'namelist'=>$namelist]);
       //return view('chart.index')->with($dates);
 
     }
