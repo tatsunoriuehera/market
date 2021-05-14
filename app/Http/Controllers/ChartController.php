@@ -40,9 +40,16 @@ class ChartController extends Controller
 
     }
     public function result(Request $request){
-      $param = ['name'=>$request->name];
+      $validate_rule = [
+        's_date' => 'required' ,
+        'e_date' => 'required'
+      ];
+      $this->validate($request,$validate_rule);
+
+      $param = ['name'=>$request->name,'s_date'=>$request->s_date,'e_date'=>$request->e_date];
       //SQLの結果を連想配列で変数に代入
-      $dates = DB::select('select distinct date , total_quantity from all_markets where name = :name and total_quantity > 0 order by date ',$param);
+      $dates = DB::select('select distinct date , total_quantity from all_markets where name = :name
+                            and date between :s_date and :e_date and total_quantity > 0 order by date ',$param);
       $namelist = DB::select('select distinct name from names ');
       //$dates=['2021-04-01','2021-04-02','2021-04-03'];
 
@@ -64,7 +71,8 @@ class ChartController extends Controller
         //$items=DB::select('select * from allresults order by date desc ,id');
         //$items=DB::select('select * from all_markets order by date desc ,id');
       //}
-      return view('chart.index',['dates'=>$j_date,'quantity'=>$j_quantity,'param'=>$param,'date_list'=>$dates,'namelist'=>$namelist]);
+      return view('chart.index',['dates'=>$j_date,'quantity'=>$j_quantity,'param'=>$param,
+      'date_list'=>$dates,'namelist'=>$namelist]);
       //return view('chart.index')->with($dates);
 
     }

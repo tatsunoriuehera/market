@@ -4,6 +4,13 @@
 @section('title')
 
 <h2>this is chart.blade</h2>
+<div>
+  @if(count($errors)>0)
+  <ul>@foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+  </ul>
+</div>@endif
 <p>choose date and item</p>
 {{$param['name']}}
 <form action="" method="post">
@@ -18,8 +25,10 @@
       @endforeach
     </select>
   </div>
+
   <div>
-    <label>date:</label><input type="date" name="s_date">-<input type="date" name="e_date">
+    <label>date:</label><input type="date" name="s_date" value="{{old('s_date')}}"> -
+                        <input type="date" name="e_date" value="{{old('e_date')}}">
   </div>
   <button type="submit"/>submit</button>
 </form>
