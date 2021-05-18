@@ -7,7 +7,7 @@
     <h3 class="ops-title">一覧</h3>
   </div>
   <ul>
-    <li><a href="allresults">all_date</a></li>
+    <!--<li><a href="allresults">all_date</a></li>-->
     @foreach($dates as $date)
     <li><a href="allresults?set_date={{$date->date}}">{{$date->date}}</a></li>
     @endforeach
@@ -27,8 +27,9 @@
 
 <div class="row">
   <div class="col-md-11 col-md-offset-1">
-    <table class="table text-center">
+    <table class="table text-right">
       <tr>
+        <th class="text-center">#</th>
         <th class="text-center">品名</th>
         <th class="text-center">数量計</th>
         <th class="text-center">販売区分</th>
@@ -42,6 +43,7 @@
       </tr>
       @foreach($items as $item)
       <tr>
+        <td>{{ $loop->index }}</td>
         <td>{{ $item->name }}</td>
         <td>{{ $item->total_quantity }}</td>
         <td>{{ $item->category }}</td>

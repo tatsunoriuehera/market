@@ -23,11 +23,11 @@ class AllresultsController extends Controller
         if(isset($request->set_date)){
           $param=['date'=>$request->set_date];
           //$items=DB::select('select * from allresults where date = :date order by date desc,id',$param);
-          $items=DB::select('select * from all_markets where date = :date order by date desc,id',$param);
+          $items=DB::select('select * from all_markets where date = :date order by date desc,id ',$param);
         }
         else{
           //$items=DB::select('select * from allresults order by date desc ,id');
-          $items=DB::select('select * from all_markets order by date desc ,id');
+          $items=DB::select('select * from all_markets order by date desc ,id limit 50 ');
         }
         return view('allresults.index',['items'=>$items],['dates'=>$dates]);
     }
