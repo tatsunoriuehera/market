@@ -44,15 +44,15 @@
       @foreach($items as $item)
       <tr>
         <td>{{ $loop->index }}</td>
-        <td>{{ $item->name }}</td>
-        <td>{{ $item->total_quantity }}</td>
+        <td class="text-left">{{ $item->name }}</td>
+        <td>{{ number_format($item->total_quantity) }}</td>
         <td>{{ $item->category }}</td>
-        <td>{{ $item->quantity }}</td>
-        <td>{{ $item->adachi }}</td>
-        <td>{{ $item->oota }}</td>
-        <td>{{ $item->itabashi }}</td>
-        <td>{{ $item->kasai }}</td>
-        <td>{{ $item->setagaya }}</td>
+        <td>{{ number_format($item->quantity) }}</td>
+        <td>{{ number_format($item->adachi) }}</td>
+        <td>{{ number_format($item->oota) }}</td>
+        <td>{{ number_format($item->itabashi) }}</td>
+        <td>{{ number_format($item->kasai) }}</td>
+        <td>{{ number_format($item->setagaya) }}</td>
         <td>{{ $item->date }}</td>
       </tr>
       @endforeach

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Carbon\Carbon;
+
 class AllresultsController extends Controller
 {
     /**
@@ -18,7 +20,9 @@ class AllresultsController extends Controller
         //$dates=DB::select('select distinct date from allresults order by date desc');
 
         //$dates=DB::select('select distinct date from all_markets order by date desc');
-        $dates=DB::table('all_markets')->distinct()->select('date')->orderBy('date','desc')->simplePaginate(10);
+        $dates = DB::table('all_markets')->distinct()->select('date')->orderBy('date','desc')->simplePaginate(10);
+        $carbon = new Carbon();
+
 
         if(isset($request->set_date)){
           $param=['date'=>$request->set_date];
