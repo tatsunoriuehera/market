@@ -4,6 +4,9 @@
 @section('title')
 
 <h2>csv import(edit.blade)</h2>
+<div class="">
+  <a href="/market/public">go index</a>
+</div>
 <form action="" method="post">
   {{csrf_field()}}
   <div class="row">

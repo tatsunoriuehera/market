@@ -4,6 +4,9 @@
 @section('title')
 
 <h2>this is chart.blade</h2>
+<div class="">
+  <a href="/market/public">go index</a>
+</div>
 <div>
   @if(count($errors)>0)
   <ul>@foreach($errors->all() as $error)
@@ -34,7 +37,7 @@
 </form>
 
 <canvas id="myLineChart"></canvas>
-
+{{--
 <table border="1">
 @foreach($date_list as $value)
 <tr>
@@ -43,6 +46,6 @@
 </tr>
 @endforeach
 </table>
-
+--}}
 
 @section('footer')

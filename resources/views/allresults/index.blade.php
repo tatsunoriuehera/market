@@ -5,6 +5,10 @@
 <div class="row">
   <div class="col-md-12">
     <h3 class="ops-title">一覧</h3>
+    <p class="ops-title">memo：足立は通常４倍入荷</p>
+  </div>
+  <div class="">
+    <a href="/market/public">go index</a>
   </div>
   <ul>
     <!--<li><a href="allresults">all_date</a></li>-->

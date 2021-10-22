@@ -4,6 +4,9 @@
 @section('title')
 
 <h2>csv import(index.blade)</h2>
+<div class="">
+  <a href="/market/public">go index</a>
+</div>
 <p>all_marketsテーブルにインポートします。</p>
 <form action="" method="post" enctype="multipart/form-data">
   {{csrf_field()}}
